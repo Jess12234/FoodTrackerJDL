@@ -13,6 +13,7 @@
 		291004852223547100C53806 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 291004842223547100C53806 /* Assets.xcassets */; };
 		291004882223547100C53806 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 291004862223547100C53806 /* LaunchScreen.storyboard */; };
 		291004932223547100C53806 /* Food_TackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291004922223547100C53806 /* Food_TackerTests.swift */; };
+		291004A02223581A00C53806 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910049F2223581A00C53806 /* RatingControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		2910048E2223547100C53806 /* Food TackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Food TackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		291004922223547100C53806 /* Food_TackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food_TackerTests.swift; sourceTree = "<group>"; };
 		291004942223547100C53806 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2910049F2223581A00C53806 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				291004842223547100C53806 /* Assets.xcassets */,
 				291004862223547100C53806 /* LaunchScreen.storyboard */,
 				291004892223547100C53806 /* Info.plist */,
+				2910049F2223581A00C53806 /* RatingControl.swift */,
 			);
 			path = "Food Tacker";
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				291004802223547000C53806 /* ViewController.swift in Sources */,
+				291004A02223581A00C53806 /* RatingControl.swift in Sources */,
 				2910047E2223547000C53806 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,24 +23,27 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         // Hide the keyboard.
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
         mealNameLabel.text = textField.text
     }
     
     //MARK: UIImagePickerControllerDelegate
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
         // Dismiss the picker if the user canceled.
         dismiss(animated: true, completion: nil)
     }
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+    {
         let chosenImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         photoImageView.contentMode = .scaleAspectFit
         photoImageView.image = chosenImage
@@ -48,8 +51,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     
     //MARK: Actions
-    @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
-        
+    @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer)
+    {
         // Hide the keyboard.
         nameTextField.resignFirstResponder()
         

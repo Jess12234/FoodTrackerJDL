@@ -19,10 +19,12 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
 
     var meal: Meal?
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+     
         nameTextField.delegate = self
-        
+     
         if let meal = meal
         {
             navigationItem.title = meal.name
@@ -34,6 +36,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         updateSaveButtonState()
     }
     
+
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
@@ -42,6 +45,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
+        // Hide the keyboard.
         textField.resignFirstResponder()
         return true
     }
@@ -52,44 +56,46 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         navigationItem.title = textField.text
     }
     
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
+      
+        dismiss(animated: true, completion: nil)
+    }
+   
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any])
+    {
+        //The info dictionary may contain multiple representations of the image. You want to use the original.
+        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else
+        {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        photoImageView.image = selectedImage
+        
+        // Dismiss the picker.
         dismiss(animated: true, completion: nil)
     }
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any])
-    {
-        let chosenImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        photoImageView.contentMode = .scaleAspectFit
-        photoImageView.image = chosenImage
-        dismiss(animated:true, completion: nil)
-      }
     
-    
-    @IBAction func cancel(_ sender: UIBarButtonItem)
-    {
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
         
-        if isPresentingInAddMealMode
-        {
+        if isPresentingInAddMealMode {
             dismiss(animated: true, completion: nil)
         }
-        else if let owningNavigationController = navigationController
-        {
+        else if let owningNavigationController = navigationController{
             owningNavigationController.popViewController(animated: true)
         }
-        else
-        {
+        else {
             fatalError("The MealViewController is not inside a navigation controller.")
         }
     }
     
-   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        
         super.prepare(for: segue, sender: sender)
         
-        // Configure the destination view controller only when the save button is pressed.
         guard let button = sender as? UIBarButtonItem, button === saveButton else
         {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
@@ -100,15 +106,15 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         let photo = photoImageView.image
         let rating = ratingControl.rating
         
-        // Set the meal to be passed to MealTableViewController after the unwind segue.
         meal = Meal(name: name, photo: photo, rating: rating)
     }
     
-    //MARK: Actions
+    
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer)
     {
         nameTextField.resignFirstResponder()
         
+
         let imagePickerController = UIImagePickerController()
         
         imagePickerController.sourceType = .photoLibrary
@@ -116,13 +122,13 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
-    
+ 
     
     private func updateSaveButtonState()
     {
-        // Disable the Save button if the text field is empty.
         let text = nameTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
     }
     
 }
+
